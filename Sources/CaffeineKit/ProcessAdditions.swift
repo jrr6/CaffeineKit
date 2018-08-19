@@ -51,6 +51,10 @@ internal extension Process {
                 proc.arguments!.append("-d")
             case .idle:
                 proc.arguments!.append("-i")
+            case .system:
+                proc.arguments!.append("-s")
+            case .user:
+                proc.arguments!.append("-u")
             case let .timed(seconds) where allowingFinite:
                 proc.arguments! += ["-t", String(seconds)]
             case let .process(pid) where allowingFinite:

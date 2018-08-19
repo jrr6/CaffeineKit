@@ -20,6 +20,15 @@ class Caffeination {
         /// Prevents system idle sleep
         case idle
         
+        /**
+         Prevents system sleep
+         - Note: On MacBooks, will only work when connected to AC power.
+        */
+        case system
+        
+        /// Simulates user activity to keep display awake
+        case user
+        
         /// Terminates Caffeination when process with specified PID exits. Might be preempted by .timed
         case process(Int32)
         
