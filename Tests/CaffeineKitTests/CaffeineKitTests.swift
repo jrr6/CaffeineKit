@@ -5,7 +5,7 @@ import XCTest
 extension Process {
     convenience init(_ executablePath: String, _ arguments: String...) {
         self.init()
-        self.launchPath = executablePath
+        self.executableURL = URL(fileURLWithPath: executablePath)
         self.arguments = arguments
         self.standardOutput = FileHandle.nullDevice
         self.standardError = FileHandle.nullDevice
@@ -28,7 +28,7 @@ final class CaffeineKitTests: XCTestCase {
     }
     
     func testCaffeinateProcessSpawnsAndDies() {
-        let caf = Caffeination(withOpts: [.idle, .display])
+        let caf = Caffeination()
         XCTAssert(!caf.isActive)
         try! caf.start()
         XCTAssert(caf.isActive)
@@ -41,7 +41,7 @@ final class CaffeineKitTests: XCTestCase {
     
     func testApproximateTimedAccuracy() {
         let expectation = self.expectation(description: "Caffeination finished")
-        let caf = Caffeination(withOpts: [.idle, .display, .timed(2)]) { process in
+        let caf = Caffeination(withOpts: [.idle, .display, .timed(2)]) { caffeination in
             expectation.fulfill()
         }
         try! caf.start()
@@ -60,11 +60,102 @@ final class CaffeineKitTests: XCTestCase {
         XCTAssert(!caffeinateExists)
         XCTAssert(!caf.isActive)
     }
-
-
-    static var allTests = [
-        ("testCaffeinateProcessSpawnsAndDies", testCaffeinateProcessSpawnsAndDies),
-        ("testApproximateTimedAccuracy", testApproximateTimedAccuracy),
-        ("testProcess", testProcess)
-    ]
+    
+    func testNoErrorOnBadStopCall() {
+        let caf = Caffeination()
+        caf.stop()
+        try! caf.start()
+        caf.stop()
+        caf.stop()
+    }
+    
+    func testSimpleCaffeinationReusability() {
+        let caf = Caffeination()
+        try! caf.start()
+        caf.stop()
+        do {
+            try caf.start()
+        } catch {
+            XCTFail("Caffeination couldn't be reused")
+        }
+        caf.stop()
+    }
+    
+    func testCaffeinateEndedInTerminationHandler() {
+        let caf = Caffeination() { caffeination in
+            XCTAssert(!self.caffeinateExists)
+        }
+        try! caf.start()
+        caf.stop()
+    }
+    
+    func testChangeTerminationHandler() {
+        let exp1 = expectation(description: "Handler 1")
+        let exp2 = expectation(description: "Handler 2")
+        let caf = Caffeination() { caffeination in
+            exp1.fulfill()
+        }
+        try! caf.start()
+        caf.stop()
+        wait(for: [exp1], timeout: 1)
+        caf.terminationHandler = { caffeination in
+            exp2.fulfill()
+        }
+        try! caf.start()
+        caf.stop()
+        wait(for: [exp2], timeout: 1)
+    }
+    
+    func testChangeTimedOptReusability() {
+        let exp1 = expectation(description: "Caffeination 1 finished")
+        let caf = Caffeination(withOpts: [.idle, .display, .timed(2)]) { caffeination in
+            exp1.fulfill()
+        }
+        try! caf.start()
+        XCTAssert(caffeinateExists)
+        XCTAssert(caf.isActive)
+        wait(for: [exp1], timeout: 2.5)
+        XCTAssert(!caffeinateExists)
+        XCTAssert(!caf.isActive)
+        caf.stop()
+        caf.opts[2] = .timed(1)
+        let exp2 = expectation(description: "Caffeination 2 finished")
+        caf.terminationHandler = { caffeination in
+            exp2.fulfill()
+        }
+        try! caf.start()
+        XCTAssert(caffeinateExists)
+        XCTAssert(caf.isActive)
+        wait(for: [exp2], timeout: 1.5)
+        XCTAssert(!caffeinateExists)
+        XCTAssert(!caf.isActive)
+        caf.stop()
+    }
+    
+    func testThrowingWhenAlreadyStarted() {
+        let caf = Caffeination()
+        do {
+            try caf.start()
+        } catch {
+            XCTFail("First start didn't succeed")
+        }
+        do {
+            try caf.start()
+            XCTFail("Should have thrown")
+        } catch let e as CaffeinationError {
+            switch e {
+            case .alreadyActive:
+                break
+            default:
+                XCTFail("Wrong error thrown")
+            }
+        } catch {
+            XCTFail("Wrong, non-CaffeinationError error thrown")
+        }
+        XCTAssert(caffeinateExists)
+        XCTAssert(caf.isActive)
+        caf.stop()
+        XCTAssert(!caffeinateExists)
+        XCTAssert(!caf.isActive)
+    }
 }

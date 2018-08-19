@@ -11,10 +11,15 @@ internal extension Process {
     /// Generates a Process for the `caffeinate` executable with the specified `Caffeination.Opts`
     static func caffeinate(opts: [Caffeination.Opt], allowingFinite: Bool, safetyCheck: Bool) -> Process {
         let proc = Process()
-        proc.launchPath = Caffeination.caffeinatePath
+        if #available(OSX 10.13, *) {
+            proc.executableURL = Caffeination.caffeinatePath
+        } else {
+            proc.launchPath = Caffeination.caffeinatePath.path
+        }
         proc.standardError = FileHandle.nullDevice
         proc.arguments = [] // Enables all the force-unwrapping later on
         
+        // Log caffeinate output using Logger
         if Logger.logLevel.rawValue >= LogLevel.error.rawValue {
             if Logger.logLevel.rawValue >= LogLevel.info.rawValue {
                 let infoPipe = Pipe()

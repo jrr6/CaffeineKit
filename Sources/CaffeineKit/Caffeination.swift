@@ -28,25 +28,25 @@ class Caffeination {
     }
     
     /// The expected location of the `caffeinate` executable
-    public static let caffeinatePath = "/usr/bin/caffeinate"
+    public static let caffeinatePath = URL(fileURLWithPath: "/usr/bin/caffeinate")
     
     /// Indicates whether the `caffeinate` executable is in the correct location
     public static var caffeinateExists: Bool {
         get {
-            return FileManager.default.fileExists(atPath: caffeinatePath)
+            return FileManager.default.fileExists(atPath: caffeinatePath.path)
         }
     }
     
     private var trapper: SignalTrapper?
     
     /// The raw `caffeinate` process, if one exists
-    var proc: Process?
+    private var proc: Process?
     
     /// If `true`, will automatically set the `caffeinate` process to terminate with this application's termination. Has no bearing on traps
     var safetyEnabled = true
     
     /// The function to be executed once the Caffeination terminates
-    var terminationHandler: ((Process) -> Void)?
+    var terminationHandler: ((Caffeination) -> Void)?
     
     /// The options for the Caffeination
     var opts: [Opt] = [] {
@@ -71,14 +71,15 @@ class Caffeination {
      Initializes a new Caffeination.
      - Parameters:
         - opts: The options with which to start the Caffeintaion.
-        - safely: Whether to enable safety measures to ensure that no "zombie" `caffeinate` processes can outlive the current application. Set to `true` by default, which is recommended.
+        - safely: Whether to enable safety measures to ensure that no "zombie" `caffeinate` processes can outlive the current application. Set to `true` by default, which is recommended
         - terminationHandler: A handler that will be called when the Caffeination stops. Will be set to `nil` if the parameter is not specified
      */
-    init(withOpts opts: [Opt], safely: Bool = true, terminationHandler: ((Process) -> Void)? = nil) {
+    init(withOpts opts: [Opt] = [.idle, .display], safely: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
         self.opts = opts
         trapper = SignalTrapper(withHandler: defaultSignalHandler)
         if safely {
             try! addTrap(for: SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM) // Cannot throw because no traps can possibly have been added yet
+            registerAppTerminationListener()
         } else {
             safetyEnabled = false
         }
@@ -153,7 +154,6 @@ class Caffeination {
     */
     func start() throws {
         try preCaffeinateSafetyCheck()
-        
         proc = Process.caffeinate(opts: opts, allowingFinite: true, safetyCheck: safetyEnabled)
         proc?.terminationHandler = procDidTerminate
         
@@ -164,24 +164,25 @@ class Caffeination {
                 throw err
             }
         } else {
-            // TODO: Obj-C bridge catching?
+            // TODO: Obj-C catching
             proc?.launch()
         }
     }
     
-    func stop() {
-        // TODO: Obj-C bridge catching?
-        proc?.terminate()
+    /// Stops the Caffeination if it is active
+    @objc func stop() {
+        if isActive {
+            proc?.terminate()
+            proc?.waitUntilExit()
+        }
     }
     
-    /// Ensures that the Caffeinate executable exists and that no Caffeination is already active
-    private func preCaffeinateSafetyCheck() throws {
-        guard isActive == false else {
-            throw CaffeinationError.alreadyActive
-        }
-        guard Caffeination.caffeinateExists else {
-            throw CaffeinationError.caffeinateNotFound
-        }
+    func registerAppTerminationListener() {
+        NotificationCenter.default.addObserver(self, selector: #selector(stop), name: NSApplication.willTerminateNotification, object: nil)
+    }
+    
+    func deregisterAppTerminationListener() {
+        NotificationCenter.default.removeObserver(self)
     }
     
     /**
@@ -203,6 +204,16 @@ class Caffeination {
         Logger.logLevel = level
     }
     
+    /// Ensures that the Caffeinate executable exists and that no Caffeination is already active
+    private func preCaffeinateSafetyCheck() throws {
+        guard isActive == false else {
+            throw CaffeinationError.alreadyActive
+        }
+        guard Caffeination.caffeinateExists else {
+            throw CaffeinationError.caffeinateNotFound
+        }
+    }
+    
     private func defaultSignalHandler() {
         stop()
         NSApplication.shared.terminate(self)
@@ -210,7 +221,7 @@ class Caffeination {
     
     // Allows the termination handler to be mutated even after the process has started
     private func procDidTerminate(proc: Process) {
-        terminationHandler?(proc)
+        terminationHandler?(self)
     }
     
 }
