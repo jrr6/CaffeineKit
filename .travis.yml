@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode9.4
+xcode_project: CaffeineKit.xcodeproj
+xcode_scheme: CaffeineKitPackageTests
+xcode_destination: platform=macOS
