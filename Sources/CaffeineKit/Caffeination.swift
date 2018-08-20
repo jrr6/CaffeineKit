@@ -26,7 +26,9 @@ class Caffeination {
         */
         case system
         
-        /// Simulates user activity to keep display awake
+        /** Simulates user activity to keep display awake
+         - Note: `caffeinate` should automatically timeout after 5 seconds if `.timed` is not also selected. However, due to a bug in the `caffeinate` tool, this does not currently happen, and the process will continue indefinitely.
+        */
         case user
         
         /// Terminates Caffeination when process with specified PID exits. Might be preempted by .timed
