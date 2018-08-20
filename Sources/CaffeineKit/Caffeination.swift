@@ -100,7 +100,7 @@ class Caffeination {
     }
     
     /**
-     Generates a closure that Caffeinates for the duration of its execution. Only the .disk, .display, and .idle parameters will be honored.
+     Generates a closure that Caffeinates for the duration of its execution. Only the .disk, .display, .idle, and .user parameters will be honored.
      - Parameter closureExp: The closure during which to Caffeinate.
      - Throws: `CaffeinationError.alreadyActive` if a Caffeination is already active.
     */
@@ -115,7 +115,7 @@ class Caffeination {
     }
     
     /**
-     Generates a Caffienated closure not associated with any Caffeination instance. Only the .disk, .display, and .idle parameters will be honored.
+     Generates a Caffienated closure not associated with any Caffeination instance. Only the .disk, .display, .idle, and .user parameters will be honored.
      - Throws: `CaffeinationError.caffeinateNotFound` if the `caffeinate` executable does not exist
      */
     static func closure<Param, Ret>(_ opts: [Opt] = [.idle, .display], closureExp: @escaping (Param) -> Ret) throws -> (Param) -> Ret {
@@ -136,7 +136,7 @@ class Caffeination {
     }
     
     /**
-     Generates a Caffienated closure not associated with any Caffeination instance. Only the .disk, .display, and .idle parameters will be honored. Prioritizes the return of a closure and will allow the closure to run even if the `caffeinate` executable is not found. Manually use `Caffeination.caffeinateExists` to check that the intended behavior will occur.
+     Generates a Caffienated closure not associated with any Caffeination instance. Only the .disk, .display, .idle, and .user parameters will be honored. Prioritizes the return of a closure and will allow the closure to run even if the `caffeinate` executable is not found. Manually use `Caffeination.caffeinateExists` to check that the intended behavior will occur.
     */
     static func unsafeClosure<Param, Ret>(_ opts: [Opt] = [.idle, .display], closureExp: @escaping (Param) -> Ret) -> (Param) -> Ret {
         var proc: Process?
