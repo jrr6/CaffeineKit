@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CaffeineKit::CaffeineKitTests"
+               BuildableName = "CaffeineKitTests.xctest"
+               BlueprintName = "CaffeineKitTests"
+               ReferencedContainer = "container:CaffeineKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CaffeineKit::CaffeineKitPackageTests::ProductTarget"
+            BuildableName = "CaffeineKitPackageTests"
+            BlueprintName = "CaffeineKitPackageTests"
+            ReferencedContainer = "container:CaffeineKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
