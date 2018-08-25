@@ -5,12 +5,13 @@
 //  Created by aaplmath on 8/15/18.
 //
 
-import Darwin
+import Cocoa
 
 /// Responsible for trapping signals sent to the app
 internal final class SignalTrapper {
     static var signalHandler: () -> Void = {}
     
+    var interceptingNotification = false
     var trappedSignals: [Int32] = []
     
     init(withHandler userHandler: @escaping () -> Void) {
@@ -23,6 +24,18 @@ internal final class SignalTrapper {
         } else {
             throw SignalError.duplicateSignalAdded
         }
+    }
+    
+    func registerNotificationObserver(withSelector selector: Selector) {
+        if !interceptingNotification {
+            NotificationCenter.default.addObserver(self, selector: selector, name: NSApplication.willTerminateNotification, object: nil)
+            interceptingNotification = true
+        }
+    }
+    
+    func deregisterNotificationObserver() {
+        NotificationCenter.default.removeObserver(self)
+        interceptingNotification = false
     }
     
     private func trapSignal(_ sig: Int32) {

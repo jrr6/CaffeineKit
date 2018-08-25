@@ -48,6 +48,7 @@ class Caffeination {
         }
     }
     
+    /// Responsible for trapping signals and intercepting Apple Events
     private var trapper: SignalTrapper?
     
     /// The raw `caffeinate` process, if one exists
@@ -78,6 +79,23 @@ class Caffeination {
         }
     }
     
+    /// Whether the Caffeination will be automatically terminated when the app is quit using the "Quit" menu or other Apple Event-based means
+    var interceptAppTermination: Bool {
+        get {
+            return trapper?.interceptingNotification ?? false
+        }
+        set(val) {
+            if val {
+                if trapper == nil {
+                    trapper = SignalTrapper(withHandler: defaultSignalHandler)
+                }
+                trapper?.registerNotificationObserver(withSelector: #selector(stop))
+            } else {
+                trapper?.deregisterNotificationObserver()
+            }
+        }
+    }
+    
     /**
      Initializes a new Caffeination.
      - Parameters:
@@ -87,10 +105,10 @@ class Caffeination {
      */
     init(withOpts opts: [Opt] = [.idle, .display], safely: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
         self.opts = opts
-        trapper = SignalTrapper(withHandler: defaultSignalHandler)
         if safely {
+            trapper = SignalTrapper(withHandler: defaultSignalHandler)
             try! addTrap(for: SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM) // Cannot throw because no traps can possibly have been added yet
-            registerAppTerminationListener()
+            self.interceptAppTermination = true
         } else {
             safetyEnabled = false
         }
@@ -188,13 +206,6 @@ class Caffeination {
         }
     }
     
-    func registerAppTerminationListener() {
-        NotificationCenter.default.addObserver(self, selector: #selector(stop), name: NSApplication.willTerminateNotification, object: nil)
-    }
-    
-    func deregisterAppTerminationListener() {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     /**
      Adds a trap to intercept signals. Useful for ensuring that the `caffeinate` process is terminated prior to app termination.
