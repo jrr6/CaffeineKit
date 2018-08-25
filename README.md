@@ -1,4 +1,4 @@
-<img src="logo.png" height="150" align="left">
+<img src="https://github.com/aaplmath/CaffeineKit/raw/master/logo.png" height="150" align="left">
 
 # CaffeineKit
 

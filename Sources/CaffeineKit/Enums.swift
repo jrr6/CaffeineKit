@@ -7,9 +7,16 @@
 
 /// Indicates the level of logging to be performed by CaffeineKit.
 public enum LogLevel: Int {
+    /// All logs.
     case info = 0
+    
+    /// All error- and warning-level logs.
     case warning = 1
+    
+    /// Error logs only.
     case error = 2
+    
+    /// Logging disabled.
     case none = 3
     
     internal var description: String {

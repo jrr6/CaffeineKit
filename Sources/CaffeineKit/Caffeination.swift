@@ -10,6 +10,8 @@ import Cocoa
 
 /// An instance of a sleep-prevention session.
 public class Caffeination {
+    
+    /// An customization option for a `Caffeination`.
     public enum Opt {
         /// Prevents disk idle sleep.
         case disk
