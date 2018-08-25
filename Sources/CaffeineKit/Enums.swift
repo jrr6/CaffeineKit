@@ -5,6 +5,7 @@
 //  Created by aaplmath on 8/15/18.
 //
 
+/// Indicates the level of logging to be performed by CaffeineKit.
 enum LogLevel: Int {
     case info = 0
     case warning = 1
@@ -25,15 +26,17 @@ enum LogLevel: Int {
     }
 }
 
+/// An error related to signal trapping.
 public enum SignalError: Error {
-    /// Indicates that an attempt was made to add a trap for a signal that is already being trapped
+    /// Indicates that an attempt was made to add a trap for a signal that is already being trapped.
     case duplicateSignalAdded
 }
 
+/// An error related to core CaffeineKit functionality.
 public enum CaffeinationError: Swift.Error {
-    /// Thrown if the caffeinate executable cannot be found
+    /// Thrown if the caffeinate executable cannot be found.
     case caffeinateNotFound
     
-    /// Thrown if an attempt is made to start a Caffeination on an already-active instance
+    /// Thrown if an attempt is made to start a Caffeination on an already-active instance.
     case alreadyActive
 }
