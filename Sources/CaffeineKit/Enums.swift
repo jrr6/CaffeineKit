@@ -6,13 +6,13 @@
 //
 
 /// Indicates the level of logging to be performed by CaffeineKit.
-enum LogLevel: Int {
+public enum LogLevel: Int {
     case info = 0
     case warning = 1
     case error = 2
     case none = 3
     
-    var description: String {
+    internal var description: String {
         switch self {
         case .info:
             return "INFO"
