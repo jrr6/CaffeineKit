@@ -2,13 +2,17 @@
 
 # CaffeineKit
 
-A library for keeping Macs awake.
+A Swift library for keeping Macs awake.
 
-[![Build Status](https://travis-ci.org/aaplmath/CaffeineKit.svg?branch=master)](https://travis-ci.org/aaplmath/CaffeineKit)
+[![Build status](https://travis-ci.org/aaplmath/CaffeineKit.svg?branch=master)](https://travis-ci.org/aaplmath/CaffeineKit)
+[![Swift version](https://img.shields.io/badge/Swift-4.1.2-orange.svg)](https://swift.org)
+[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/aaplmath/CaffeineKit/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/aaplmath/CaffeineKit.svg)](https://github.com/aaplmath/CaffeineKit/releases)
+[![Documentation](https://github.com/aaplmath/CaffeineKit/blob/master/docs/badge.svg)](https://aaplmath.github.io/CaffeineKit)
 
 ---
 
-**Still under development! Backwards-incompatible changes may be introduced without warning.**
+**Still under development! Breaking changes may be introduced without warning.**
 
 CaffeineKit prevents sleep using the command-line utility `caffeinate`. Why is it better than `let proc = Process(); proc.executableURL = URL(fileURLWithPath: "/usr/bin/caffeinate"); proc.arguments = ["-d", "-i"]; try! proc.run()`?
 
