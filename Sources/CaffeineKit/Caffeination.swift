@@ -145,7 +145,7 @@ public class Caffeination {
      - Returns: A closure that will create an active Caffeination for the duration of its synchronous execution.
      - Throws: `CaffeinationError.caffeinateNotFound` if the `caffeinate` executable does not exist.
      */
-    public static func closure<Param, Ret>(_ opts: [Opt] = [.idle, .display], sourceClosure: @escaping (_ parameter: Param) -> Ret) throws -> (Param) -> Ret {
+    public static func closure<Param, Ret>(withOpts opts: [Opt] = [.idle, .display], _ sourceClosure: @escaping (_ parameter: Param) -> Ret) throws -> (Param) -> Ret {
         guard caffeinateExists else {
             throw CaffeinationError.caffeinateNotFound
         }
@@ -170,7 +170,7 @@ public class Caffeination {
         - parameter: A parameter of any type.
      - Returns: A closure that will create an active Caffeination for the duration of its synchronous execution.
     */
-    public static func unsafeClosure<Param, Ret>(_ opts: [Opt] = [.idle, .display], sourceClosure: @escaping (_ parameter: Param) -> Ret) -> (Param) -> Ret {
+    public static func unsafeClosure<Param, Ret>(withOpts opts: [Opt] = [.idle, .display], _ sourceClosure: @escaping (_ parameter: Param) -> Ret) -> (Param) -> Ret {
         var proc: Process?
         if caffeinateExists {
             proc = Process.caffeinate(opts: opts, allowingFinite: false, safetyCheck: true)

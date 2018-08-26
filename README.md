@@ -8,7 +8,7 @@ A library for keeping Macs awake.
 
 ---
 
-**Still under development!**
+**Still under development! Backwards-incompatible changes may be introduced without warning.**
 
 CaffeineKit prevents sleep using the command-line utility `caffeinate`. Why is it better than `let proc = Process(); proc.executableURL = URL(fileURLWithPath: "/usr/bin/caffeinate"); proc.arguments = ["-d", "-i"]; try! proc.run()`?
 
