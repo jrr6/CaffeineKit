@@ -52,6 +52,7 @@
 		"CaffeineKit::CaffeineKit::Product" /* CaffeineKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CaffeineKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"CaffeineKit::CaffeineKitTests::Product" /* CaffeineKitTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaffeineKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E218A1412123C80F0015C516 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E226F8842132FCF9008D760D /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .jazzy.yaml; sourceTree = "<group>"; };
 		E259FF7D21249E0B00235A99 /* SignalTrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalTrapper.swift; sourceTree = "<group>"; };
 		E25F636821250263007106FE /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E25F636A21252774007106FE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				E2EAA688212B3F40006D6D8E /* .travis.yml */,
+				E226F8842132FCF9008D760D /* .jazzy.yaml */,
 				OBJ_6 /* Package.swift */,
 				E218A1412123C80F0015C516 /* README.md */,
 				OBJ_7 /* Sources */,

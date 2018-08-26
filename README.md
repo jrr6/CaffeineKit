@@ -59,7 +59,7 @@ do {
 Creating a closure that prevents sleep:
 
 ```swift
-myObject.closureProperty: (Int, String) -> Int = Caffeination.closure { (myInt, myStr) -> Int in
+myObject.closureProperty: (Int, String) -> Int = try Caffeination.closure { (myInt, myStr) -> Int in
     // Actions that require the computer to be awake
     return 1
 }
