@@ -102,12 +102,12 @@ public class Caffeination {
      Initializes a new Caffeination.
      - Parameters:
         - opts: The options with which to start the Caffeintaion.
-        - safely: Whether to enable safety measures to ensure that no "zombie" `caffeinate` processes can outlive the current application. Set to `true` by default, which is recommended.
+        - safety: Whether to enable safety measures to ensure that no "zombie" `caffeinate` processes can outlive the current application. Set to `true` by default, which is recommended.
         - terminationHandler: A handler that will be called when the Caffeination stops. Will be set to `nil` if the parameter is not specified.
      */
-   public init(withOpts opts: [Opt] = [.idle, .display], safely: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
+   public init(withOpts opts: [Opt] = [.idle, .display], safety: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
         self.opts = opts
-        if safely {
+        if safety {
             trapper = SignalTrapper(withHandler: defaultSignalHandler)
             try! addTrap(for: SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM) // Cannot throw because no traps can possibly have been added yet
             self.interceptAppTermination = true
