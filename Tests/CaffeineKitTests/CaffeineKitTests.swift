@@ -19,7 +19,9 @@ extension Process {
 @available(macOS 10.13, *)
 final class CaffeineKitTests: XCTestCase {
     
-    var caffeinateExists: Bool {
+    // MARK: - Utilities
+    
+    var cafProcExists: Bool {
         get {
             let proc = Process("/usr/bin/killall", "-0", "caffeinate")
             proc.runSynchronously()
@@ -27,16 +29,22 @@ final class CaffeineKitTests: XCTestCase {
         }
     }
     
+    // Workaround for Swift (?) bug
+    func execute(_ closure: () -> Void) {
+        closure()
+    }
+    
+    // MARK: - Tests
+    
     func testCaffeinateProcessSpawnsAndDies() {
         let caf = Caffeination()
         XCTAssert(!caf.isActive)
         try! caf.start()
         XCTAssert(caf.isActive)
-        XCTAssert(caffeinateExists)
+        XCTAssert(cafProcExists)
         caf.stop()
-        let proc2 = Process("/usr/bin/killall", "-0", "caffeinate")
-        proc2.runSynchronously()
-        XCTAssert(!caffeinateExists)
+        XCTAssert(!cafProcExists)
+        XCTAssert(!caf.isActive)
     }
     
     func testApproximateTimedAccuracy() {
@@ -57,7 +65,7 @@ final class CaffeineKitTests: XCTestCase {
         Thread.sleep(forTimeInterval: 2)
         proc.terminate()
         Thread.sleep(forTimeInterval: 0.1)
-        XCTAssert(!caffeinateExists)
+        XCTAssert(!cafProcExists)
         XCTAssert(!caf.isActive)
     }
     
@@ -83,7 +91,7 @@ final class CaffeineKitTests: XCTestCase {
     
     func testCaffeinateEndedInTerminationHandler() {
         let caf = Caffeination() { caffeination in
-            XCTAssert(!self.caffeinateExists)
+            XCTAssert(!self.cafProcExists)
         }
         try! caf.start()
         caf.stop()
@@ -112,10 +120,10 @@ final class CaffeineKitTests: XCTestCase {
             exp1.fulfill()
         }
         try! caf.start()
-        XCTAssert(caffeinateExists)
+        XCTAssert(cafProcExists)
         XCTAssert(caf.isActive)
         wait(for: [exp1], timeout: 2.5)
-        XCTAssert(!caffeinateExists)
+        XCTAssert(!cafProcExists)
         XCTAssert(!caf.isActive)
         caf.stop()
         caf.opts[2] = .timed(1)
@@ -124,10 +132,10 @@ final class CaffeineKitTests: XCTestCase {
             exp2.fulfill()
         }
         try! caf.start()
-        XCTAssert(caffeinateExists)
+        XCTAssert(cafProcExists)
         XCTAssert(caf.isActive)
         wait(for: [exp2], timeout: 1.5)
-        XCTAssert(!caffeinateExists)
+        XCTAssert(!cafProcExists)
         XCTAssert(!caf.isActive)
         caf.stop()
     }
@@ -152,10 +160,38 @@ final class CaffeineKitTests: XCTestCase {
         } catch {
             XCTFail("Wrong, non-CaffeinationError error thrown")
         }
-        XCTAssert(caffeinateExists)
+        XCTAssert(cafProcExists)
         XCTAssert(caf.isActive)
         caf.stop()
-        XCTAssert(!caffeinateExists)
+        XCTAssert(!cafProcExists)
         XCTAssert(!caf.isActive)
+    }
+    
+    func testClosureLifeCycle() {
+        XCTAssert(!cafProcExists)
+        let closure = try! Caffeination.closure { () -> Void in
+            XCTAssert(self.cafProcExists)
+        }
+        execute(closure)
+        XCTAssert(!cafProcExists)
+    }
+    
+    func testClosureIgnoresTimed() {
+        let closure = try! Caffeination.closure(withOpts: [.idle, .display, .timed(5)]) {
+            XCTAssert(self.cafProcExists)
+        }
+        execute(closure)
+        XCTAssert(!cafProcExists)
+    }
+    
+    func testClosureIgnoresProc() {
+        let proc = Process("/bin/cat")
+        try! proc.run()
+        let closure = try! Caffeination.closure(withOpts: [.idle, .display, .process(proc.processIdentifier)]) {
+            XCTAssert(self.cafProcExists)
+        }
+        execute(closure)
+        XCTAssert(!cafProcExists)
+        proc.terminate()
     }
 }
