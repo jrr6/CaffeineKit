@@ -37,7 +37,7 @@ public class Caffeination {
         case process(Int32)
         
         /// Terminates Caffeination after specified period of time *in seconds*. Might be preempted by `.process`.
-        case timed(Double)
+        case timed(TimeInterval)
     }
     
     /// The expected location of the `caffeinate` executable.
