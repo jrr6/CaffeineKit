@@ -36,6 +36,7 @@ final class CaffeineKitTests: XCTestCase {
     
     // MARK: - Tests
     
+    // FIXME: Fails when run in batch tests, but succeeds when run independently
     func testCaffeinateProcessSpawnsAndDies() {
         let caf = Caffeination()
         XCTAssert(!caf.isActive)

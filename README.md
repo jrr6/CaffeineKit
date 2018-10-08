@@ -20,7 +20,7 @@ CaffeineKit prevents sleep using the command-line utility `caffeinate`. Why is i
 
     \*If you use the `process` Caffeination option, CaffeineKit can't prevent `caffeinate` from persisting if your app is force-quit. But it will still stop zombie processes if you receive any other sort of interrupt!
   
-* **Swiftiness**: `try Caffeination(withOpts[.display, .idle, .timed(2)]).start()` vs. `let proc = Process(); proc.executableURL = URL(fileURLWithPath: "/usr/bin/caffeinate"); proc.arguments = ["-d", "-i", "-t", "2"]; try proc.run()`. Need more be said?
+* **Swiftiness**: `try Caffeination(withOpts: [.display, .idle, .timed(2)]).start()` vs. `let proc = Process(); proc.executableURL = URL(fileURLWithPath: "/usr/bin/caffeinate"); proc.arguments = ["-d", "-i", "-t", "2"]; try proc.run()`. Need more be said?
 * **Flexibility**: CaffeineKit is versatile. For instance (no pun intended), instances of `Caffeination` can be reused. (Ever tried re-running a `Process`?) Multiple `Caffeination` sessions can even occur concurrently. Caffeination exposes an incredibly simple and intuitive architecture, but one that is powerful and customizable if you want it to be.
 * **Closures made simple**: CaffeineKit exposes a robust, generics-based closure model that makes it trivial to create closures that prevent screen, disk, or idle sleep. These are especially useful for tasks that require that the computer stay awake, but which macOS might not recognize as having this requirement.
 
