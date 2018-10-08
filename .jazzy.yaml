@@ -15,5 +15,5 @@ root_url: https://aaplmath.github.io/CaffeineKit/
 copyright: 'Copyright &copy; 2018 aaplmath. CaffeineKit is made available under the [MIT License](https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE).'
 theme: apple
 
-github_file_prefix: https://github.com/aaplmath/CaffeineKit/tree/v0.1.0
-module_version: 0.1.0
+github_file_prefix: https://github.com/aaplmath/CaffeineKit/tree/v0.2.0
+module_version: 0.2.0

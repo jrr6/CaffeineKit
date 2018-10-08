@@ -6,7 +6,7 @@ A Swift library for keeping Macs awake.
 
 [![GitHub release](https://img.shields.io/github/release/aaplmath/CaffeineKit.svg)](https://github.com/aaplmath/CaffeineKit/releases)
 [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/aaplmath/CaffeineKit/master/LICENSE)
-[![Documentation](https://github.com/aaplmath/CaffeineKit/blob/master/docs/badge.svg)](https://aaplmath.github.io/CaffeineKit)
+[![Documentation](https://aaplmath.github.io/CaffeineKit/badge.svg)](https://aaplmath.github.io/CaffeineKit)
 [![Swift version](https://img.shields.io/badge/Swift-4.2-orange.svg)](https://swift.org)
 [![Build status](https://travis-ci.org/aaplmath/CaffeineKit.svg?branch=master)](https://travis-ci.org/aaplmath/CaffeineKit)
 
