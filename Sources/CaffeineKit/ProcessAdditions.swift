@@ -44,24 +44,14 @@ internal extension Process {
         }
         
         for opt in opts {
-            switch opt {
-            case .disk:
-                proc.arguments!.append("-m")
-            case .display:
-                proc.arguments!.append("-d")
-            case .idle:
-                proc.arguments!.append("-i")
-            case .system:
-                proc.arguments!.append("-s")
-            case .user:
-                proc.arguments!.append("-u")
-            case let .timed(seconds) where allowingFinite:
-                proc.arguments! += ["-t", String(seconds)]
-            case let .process(pid) where allowingFinite:
-                proc.arguments! += ["-w", String(pid)]
-            default:
-                break
+            if !allowingFinite {
+                if case .timed = opt {
+                    continue
+                } else if case .process = opt {
+                    continue
+                }
             }
+            proc.arguments!.append(contentsOf: opt.argumentList)
         }
         
         // Have caffeinate automatically terminate upon the app's termination as an added precuation

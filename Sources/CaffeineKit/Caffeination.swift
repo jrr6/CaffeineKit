@@ -39,6 +39,135 @@ public class Caffeination {
         
         /// Terminates Caffeination after specified period of time *in seconds*. Might be preempted by `.process`.
         case timed(TimeInterval)
+        
+        /// The default options for a standard Caffeination.
+        public static var defaults: [Opt] {
+            get {
+                return [.idle, .display]
+            }
+        }
+        
+        /// Converts an Opt to the raw argument(s) passed to caffeinate.
+        public var argumentList: [String] {
+            get {
+                switch self {
+                case .disk:
+                    return ["-m"]
+                case .display:
+                    return ["-d"]
+                case .idle:
+                    return ["-i"]
+                case .system:
+                    return ["-s"]
+                case .user:
+                    return ["-u"]
+                case let .timed(seconds):
+                    return ["-t", String(seconds)]
+                case let .process(pid):
+                    return ["-w", String(pid)]
+                }
+            }
+        }
+        
+        /**
+         Returns an `Opt` corresponding to a single caffeinate argument string.
+         - Parameter string: The String containing the argument to parse.
+         - Returns: An `Opt` corresponding to the argument passed, or `nil` if the argument was not recognized.
+         - Note: Options that require a numerical argument (e.g., `-t`) should use `from(_ array:)`.
+         */
+        public static func from(_ string: String) -> Opt? {
+            switch (string) {
+            case "-m":
+                return .disk
+            case "-d":
+                return .display
+            case "-i":
+                return .idle
+            case "-s":
+                return .system
+            case "-u":
+                return .user
+            default:
+                return nil
+            }
+        }
+        
+        /**
+         Returns an `Opt` from a [String] containing a **single** argument to caffeinate and, if necessary, an associated numerical argument.
+         - Parameter array: The array containing the **single** argument to caffeinate and an associated value (if necessary).
+         - Returns: An `Opt` corresponding to the argument, or `nil`.
+         - Note: `nil` will be returned if:
+            - an unknown argument is passed (e.g., `["-f"]`).
+            - a value is passed for an argument that doesn't accept one (e.g., `["-m", "42"]`).
+            - no value is passed for an argument that requires one (e.g., `["-w"]`).
+            - multiple option arguments are passed (e.g., `["-d", "-m"]`) (use `array(from:)` instead).
+        */
+        public static func from(_ array: [String]) -> Opt? {
+            if array.count == 1 {
+                return Opt.from(array[0])
+            } else if array.count == 2 {
+                switch array[0] {
+                case "-t":
+                    guard let time = TimeInterval(array[1]) else {
+                        return nil
+                    }
+                    return .timed(time)
+                case "-w":
+                    guard let proc = Int32(array[1]) else {
+                        return nil
+                    }
+                    return .process(proc)
+                default:
+                    return nil
+                }
+            }
+            return nil
+        }
+        
+        /**
+         Returns an [Opt] from a [String] containing raw arguments (and their associated integer values, if needed) to caffeinate, or `nil` if an invalid value is passed (see discussion).
+         - Parameter stringArray: The array from which to parse the argument (and associated value).
+         - Returns: An array of `Opt`s corresponding to the values passed, or `nil`.
+         - Note: `nil` will be returned if:
+            - an unknown argument is passed (e.g., `["-f"]`).
+            - a value is passed for an argument that doesn't accept one (e.g., `["-m", "42"]`).
+            - no value is passed for an argument that requires one (e.g., `["-w", "-d"]`).
+         */
+        public static func array(from stringArray: [String]) -> [Opt]? {
+            var res: [Opt] = []
+            var i = 0
+            while i < stringArray.count {
+                // While this switch is redundant, the performance loss caused by making calls to `from` is significant enough that it is worth the trade-off
+                switch stringArray[i] {
+                case "-m":
+                    res.append(.disk)
+                case "-d":
+                    res.append(.display)
+                case "-i":
+                    res.append(.idle)
+                case "-s":
+                    res.append(.system)
+                case "-u":
+                    res.append(.user)
+                case "-t":
+                    guard let time = TimeInterval(stringArray[i + 1]) else {
+                        return nil
+                    }
+                    res.append(.timed(time))
+                    i += 1
+                case "-w":
+                    guard let proc = Int32(stringArray[i + 1]) else {
+                        return nil
+                    }
+                    res.append(.process(proc))
+                    i += 1
+                default:
+                    return nil
+                }
+                i += 1
+            }
+            return res
+        }
     }
     
     /// The expected location of the `caffeinate` executable.
@@ -106,7 +235,8 @@ public class Caffeination {
         - safety: Whether to enable safety measures to ensure that no "zombie" `caffeinate` processes can outlive the current application. Set to `true` by default, which is recommended.
         - terminationHandler: A handler that will be called when the Caffeination stops. Will be set to `nil` if the parameter is not specified.
      */
-   public init(withOpts opts: [Opt] = [.idle, .display], safety: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
+   public init(withOpts opts: [Opt] = Opt.defaults, safety: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
+        // TODO: duplicate opt entries need to be disallowed because they result in unexpected behavior
         self.opts = opts
         if safety {
             trapper = SignalTrapper(withHandler: defaultSignalHandler)
@@ -146,7 +276,7 @@ public class Caffeination {
      - Returns: A closure that will create an active Caffeination for the duration of its synchronous execution.
      - Throws: `CaffeinationError.caffeinateNotFound` if the `caffeinate` executable does not exist.
      */
-    public static func closure<Param, Ret>(withOpts opts: [Opt] = [.idle, .display], _ sourceClosure: @escaping (_ parameter: Param) -> Ret) throws -> (Param) -> Ret {
+    public static func closure<Param, Ret>(withOpts opts: [Opt] = Opt.defaults, _ sourceClosure: @escaping (_ parameter: Param) -> Ret) throws -> (Param) -> Ret {
         guard caffeinateExists else {
             throw CaffeinationError.caffeinateNotFound
         }
@@ -171,7 +301,7 @@ public class Caffeination {
         - parameter: A parameter of any type.
      - Returns: A closure that will create an active Caffeination for the duration of its synchronous execution.
     */
-    public static func unsafeClosure<Param, Ret>(withOpts opts: [Opt] = [.idle, .display], _ sourceClosure: @escaping (_ parameter: Param) -> Ret) -> (Param) -> Ret {
+    public static func unsafeClosure<Param, Ret>(withOpts opts: [Opt] = Opt.defaults, _ sourceClosure: @escaping (_ parameter: Param) -> Ret) -> (Param) -> Ret {
         var proc: Process?
         if caffeinateExists {
             proc = Process.caffeinate(opts: opts, allowingFinite: false, safetyCheck: true)

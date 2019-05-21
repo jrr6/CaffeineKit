@@ -195,4 +195,44 @@ final class CaffeineKitTests: XCTestCase {
         XCTAssert(!cafProcExists)
         proc.terminate()
     }
+    
+    // MARK: - Testing argument/Opt interop
+    
+    var mappings: [String: Caffeination.Opt] = [
+        "-d": .display,
+        "-i": .idle,
+        "-m": .disk,
+        "-u": .user,
+        "-s": .system
+    ]
+    
+    func testGetRandomSingleArg() {
+        let arg = mappings.randomElement()!
+        guard let opt = Caffeination.Opt.from(arg.key) else {
+            XCTFail("Couldn't instantiate opt")
+            return
+        }
+        // Hacky, but good enough for unit testing
+        XCTAssert(String(stringInterpolationSegment: opt) == String(stringInterpolationSegment: arg.value))
+    }
+    
+    func testGetPIDFromArray() {
+        let rand = Int32.random(in: 0..<Int32.max)
+        let opt = Caffeination.Opt.from(["-w", String(rand)])
+        if case .process(rand)? = opt {} else {
+            XCTFail()
+        }
+        let nilOpt = Caffeination.Opt.from([String(rand), "-w"])
+        XCTAssert(nilOpt == nil)
+    }
+    
+    func testGetTimeFromArray() {
+        let rand = Double.random(in: 0..<60*60*24*365)
+        let opt = Caffeination.Opt.from(["-t", String(rand)])
+        if case .timed(rand)? = opt {} else {
+            XCTFail()
+        }
+        let nilOpt = Caffeination.Opt.from([String(rand), "-t"])
+        XCTAssert(nilOpt == nil)
+    }
 }
