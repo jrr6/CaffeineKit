@@ -250,6 +250,8 @@ public class Caffeination {
         }
     }
     
+    // TODO: Closure arguments are tuples rather than arbitrary in number, although the latter may not be possible.
+    
     /**
      Generates a closure that Caffeinates for the duration of its execution. Inherits the Caffeination object's `opts`, of which only `.disk`, `.display`, `.idle`, and `.user` will be honored.
      - Parameter sourceClosure: The closure during which to Caffeinate.

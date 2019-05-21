@@ -29,10 +29,10 @@ final class CaffeineKitTests: XCTestCase {
         }
     }
     
-    // Workaround for Swift (?) bug
-    func execute(_ closure: () -> Void) {
-        closure()
-    }
+//    // Workaround for Swift (?) bug
+//    func execute(_ closure: () -> Void) {
+//        closure()
+//    }
     
     // MARK: - Tests
     
@@ -173,7 +173,7 @@ final class CaffeineKitTests: XCTestCase {
         let closure = try! Caffeination.closure { () -> Void in
             XCTAssert(self.cafProcExists)
         }
-        execute(closure)
+        closure(())
         XCTAssert(!cafProcExists)
     }
     
@@ -181,7 +181,7 @@ final class CaffeineKitTests: XCTestCase {
         let closure = try! Caffeination.closure(withOpts: [.idle, .display, .timed(5)]) {
             XCTAssert(self.cafProcExists)
         }
-        execute(closure)
+        closure(())
         XCTAssert(!cafProcExists)
     }
     
@@ -191,7 +191,7 @@ final class CaffeineKitTests: XCTestCase {
         let closure = try! Caffeination.closure(withOpts: [.idle, .display, .process(proc.processIdentifier)]) {
             XCTAssert(self.cafProcExists)
         }
-        execute(closure)
+        closure(())
         XCTAssert(!cafProcExists)
         proc.terminate()
     }
