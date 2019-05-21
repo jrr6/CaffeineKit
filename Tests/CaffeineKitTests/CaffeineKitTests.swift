@@ -209,11 +209,11 @@ final class CaffeineKitTests: XCTestCase {
     func testGetRandomSingleArg() {
         let arg = mappings.randomElement()!
         guard let opt = Caffeination.Opt.from(arg.key) else {
-            XCTFail("Couldn't instantiate opt")
+            XCTFail("Couldn't instantiate opt from \(arg.key)")
             return
         }
         // Hacky, but good enough for unit testing
-        XCTAssert(String(stringInterpolationSegment: opt) == String(stringInterpolationSegment: arg.value))
+        XCTAssert(String(describing: opt) == String(describing: arg.value))
     }
     
     func testGetPIDFromArray() {
