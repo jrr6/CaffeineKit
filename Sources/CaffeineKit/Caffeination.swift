@@ -221,7 +221,7 @@ public class Caffeination {
                 if trapper == nil {
                     trapper = SignalTrapper(withHandler: defaultSignalHandler)
                 }
-                trapper?.registerNotificationObserver(withSelector: #selector(stop))
+                trapper?.registerNotificationObserver(withSelector: #selector(self.stop))
             } else {
                 trapper?.deregisterNotificationObserver()
             }
@@ -358,7 +358,7 @@ public class Caffeination {
     }
     
     /// Stops the Caffeination if it is active.
-    @objc public func stop() {
+    @objc dynamic public func stop() {
         if isActive {
             proc?.terminate()
             proc?.waitUntilExit()
