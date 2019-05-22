@@ -396,7 +396,7 @@ public class Caffeination {
     }
     
     dynamic private func defaultSignalHandler() {
-        stop()
+        self.stop()
         NSApplication.shared.terminate(self)
     }
     
