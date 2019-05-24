@@ -169,8 +169,9 @@ final class CaffeineKitTests: XCTestCase {
     }
     
     func testClosureLifeCycle() {
+        let caf = Caffeination()
         XCTAssert(!cafProcExists)
-        let closure = try! Caffeination.closure { () -> Void in
+        let closure = try! caf.closure { () -> Void in
             XCTAssert(self.cafProcExists)
         }
         closure(())
@@ -178,7 +179,8 @@ final class CaffeineKitTests: XCTestCase {
     }
     
     func testClosureIgnoresTimed() {
-        let closure = try! Caffeination.closure(withOpts: [.idle, .display, .timed(5)]) {
+        let caf = Caffeination(withOpts: [.idle, .display, .timed(5)], safety: true, terminationHandler: nil)
+        let closure = try! caf.closure {
             XCTAssert(self.cafProcExists)
         }
         closure(())
@@ -188,7 +190,8 @@ final class CaffeineKitTests: XCTestCase {
     func testClosureIgnoresProc() {
         let proc = Process("/bin/cat")
         try! proc.run()
-        let closure = try! Caffeination.closure(withOpts: [.idle, .display, .process(proc.processIdentifier)]) {
+        let caf = Caffeination(withOpts: [.idle, .display, .process(proc.processIdentifier)], safety: true, terminationHandler: nil)
+        let closure = try! caf.closure {
             XCTAssert(self.cafProcExists)
         }
         closure(())
