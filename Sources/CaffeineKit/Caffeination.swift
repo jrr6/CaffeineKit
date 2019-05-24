@@ -180,14 +180,11 @@ public class Caffeination {
         }
     }
     
-    /// Responsible for trapping signals and intercepting Apple Events.
-    private var trapper: SignalTrapper?
-    
     /// The raw `caffeinate` process, if one exists.
     private var proc: Process?
     
-    /// If `true`, will automatically set the `caffeinate` process to terminate with this application's termination. Has no bearing on traps.
-    public var safetyEnabled = true
+    /// If `true`, will automatically set the `caffeinate` process to terminate with this application's termination (when the `.process` option is not passed). Has no bearing on traps.
+    public var limitCaffeinationLifetime = true
     
     /// The function to be executed once the Caffeination terminates.
     public var terminationHandler: ((Caffeination) -> Void)?
@@ -211,19 +208,13 @@ public class Caffeination {
         }
     }
     
-    /// Whether the Caffeination will be automatically terminated when the app is quit using the "Quit" menu or other Apple Event-based means.
+    /// Whether the Caffeination will be automatically terminated when the app is quit using the "Quit" menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused
     public var interceptAppTermination: Bool {
-        get {
-            return trapper?.interceptingNotification ?? false
-        }
-        set(val) {
+        willSet(val) {
             if val {
-                if trapper == nil {
-                    trapper = SignalTrapper(withHandler: defaultSignalHandler)
-                }
-                trapper?.registerNotificationObserver(withSelector: #selector(self.stop))
+                SignalTrapper.shared.register(self)
             } else {
-                trapper?.deregisterNotificationObserver()
+                SignalTrapper.shared.deregister(self)
             }
         }
     }
@@ -239,11 +230,11 @@ public class Caffeination {
         // TODO: duplicate opt entries need to be disallowed because they result in unexpected behavior
         self.opts = opts
         if safety {
-            trapper = SignalTrapper(withHandler: defaultSignalHandler)
-            try! addTrap(for: SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM) // Cannot throw because no traps can possibly have been added yet
             self.interceptAppTermination = true
+            SignalTrapper.shared.register(self)
         } else {
-            safetyEnabled = false
+            limitCaffeinationLifetime = false
+            self.interceptAppTermination = false
         }
         if let terminationHandler = terminationHandler {
             self.terminationHandler = terminationHandler
@@ -331,7 +322,7 @@ public class Caffeination {
     */
     public func start() throws {
         try preCaffeinateSafetyCheck()
-        proc = Process.caffeinate(opts: opts, allowingFinite: true, safetyCheck: safetyEnabled)
+        proc = Process.caffeinate(opts: opts, allowingFinite: true, safetyCheck: limitCaffeinationLifetime)
         proc?.terminationHandler = procDidTerminate
         
         if #available(macOS 10.13, *) {
@@ -358,22 +349,10 @@ public class Caffeination {
     }
     
     /// Stops the Caffeination if it is active.
-    @objc dynamic public func stop() {
+    public func stop() {
         if isActive {
             proc?.terminate()
             proc?.waitUntilExit()
-        }
-    }
-    
-    
-    /**
-     Adds a trap to intercept signals. Useful for ensuring that the `caffeinate` process is terminated prior to app termination. Can only be called once per signal, and a trap cannot be removed once it has been created.
-     - Parameter signals: Any number of system signals to trap (e.g., SIGHUP, SIGINT).
-     - Throws: `SignalError.duplicateSignalAdded` if an attempt is made to trap a signal that is already being trapped.
-    */
-    public func addTrap(for signals: Int32...) throws {
-        for signal in signals {
-            try trapper?.addSignal(signal)
         }
     }
     
@@ -395,14 +374,14 @@ public class Caffeination {
         }
     }
     
-    dynamic private func defaultSignalHandler() {
-        self.stop()
-        NSApplication.shared.terminate(self)
-    }
-    
     // Allows the termination handler to be mutated even after the process has started
     private func procDidTerminate(proc: Process) {
         terminationHandler?(self)
+    }
+    
+    deinit {
+        // TODO: There's probably a more elegant way of avoiding reference retention
+        SignalTrapper.shared.deregister(self)
     }
     
 }
