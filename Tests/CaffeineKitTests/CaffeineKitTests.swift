@@ -179,7 +179,7 @@ final class CaffeineKitTests: XCTestCase {
     }
     
     func testClosureIgnoresTimed() {
-        let caf = Caffeination(withOpts: [.idle, .display, .timed(5)], safety: true, terminationHandler: nil)
+        let caf = Caffeination(withOpts: [.idle, .display, .timed(5)])
         let closure = try! caf.closure {
             XCTAssert(self.cafProcExists)
         }
@@ -190,7 +190,7 @@ final class CaffeineKitTests: XCTestCase {
     func testClosureIgnoresProc() {
         let proc = Process("/bin/cat")
         try! proc.run()
-        let caf = Caffeination(withOpts: [.idle, .display, .process(proc.processIdentifier)], safety: true, terminationHandler: nil)
+        let caf = Caffeination(withOpts: [.idle, .display, .process(proc.processIdentifier)])
         let closure = try! caf.closure {
             XCTAssert(self.cafProcExists)
         }
