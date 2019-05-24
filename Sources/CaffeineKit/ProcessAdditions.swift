@@ -54,7 +54,7 @@ internal extension Process {
             proc.arguments!.append(contentsOf: opt.argumentList)
         }
         
-        // Have caffeinate automatically terminate upon the app's termination as an added precuation
+        // Have caffeinate automatically terminate upon the app's termination as an added precaution
         if safetyCheck {
             if !proc.arguments!.contains("-w") {
                 proc.arguments! += ["-w", String(ProcessInfo.processInfo.processIdentifier)]

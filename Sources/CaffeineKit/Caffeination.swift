@@ -211,6 +211,10 @@ public class Caffeination {
     /// Whether the Caffeination will be automatically terminated when the app is quit using the "Quit" menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused
     public var interceptAppTermination: Bool {
         willSet(val) {
+            // If this is changed while the Caffeination is in progress, its registration needs to be changed immediately. Otherwise, we can wait for this to take effect the next time the Caffeination starts.
+            guard isActive else {
+                return
+            }
             if val {
                 SignalTrapper.shared.register(self)
             } else {
@@ -231,7 +235,6 @@ public class Caffeination {
         self.opts = opts
         if safety {
             self.interceptAppTermination = true
-            SignalTrapper.shared.register(self)
         } else {
             limitCaffeinationLifetime = false
             self.interceptAppTermination = false
@@ -328,6 +331,7 @@ public class Caffeination {
         if #available(macOS 10.13, *) {
             do {
                 try proc?.run()
+                SignalTrapper.shared.register(self)
             } catch let err {
                 throw err
             }
@@ -376,12 +380,7 @@ public class Caffeination {
     
     // Allows the termination handler to be mutated even after the process has started
     private func procDidTerminate(proc: Process) {
+        SignalTrapper.shared.deregister(self)
         terminationHandler?(self)
     }
-    
-    deinit {
-        // TODO: There's probably a more elegant way of avoiding reference retention
-        SignalTrapper.shared.deregister(self)
-    }
-    
 }
