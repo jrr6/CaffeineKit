@@ -1,8 +1,8 @@
 module: CaffeineKit
 author: aaplmath
 
+swift_version: 5.0.1
 min_acl: public
-swift_version: 4.2
 
 output: docs
 clean: true
@@ -12,8 +12,8 @@ author_url: https://aaplmath.github.io
 github_url: https://github.com/aaplmath/CaffeineKit
 root_url: https://aaplmath.github.io/CaffeineKit/
 
-copyright: 'Copyright &copy; 2018 aaplmath. CaffeineKit is made available under the [MIT License](https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE).'
+copyright: 'Copyright &copy; 2019 aaplmath. CaffeineKit is made available under the [MIT License](https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE).'
 theme: apple
 
-github_file_prefix: https://github.com/aaplmath/CaffeineKit/tree/v0.2.0
-module_version: 0.2.0
+github_file_prefix: https://github.com/aaplmath/CaffeineKit/tree/v0.3.0
+module_version: 0.3.0

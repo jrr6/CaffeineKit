@@ -33,12 +33,6 @@ public enum LogLevel: Int {
     }
 }
 
-/// An error related to signal trapping.
-public enum SignalError: Error {
-    /// Indicates that an attempt was made to add a trap for a signal that is already being trapped.
-    case duplicateSignalAdded
-}
-
 /// An error related to core CaffeineKit functionality.
 public enum CaffeinationError: Swift.Error {
     /// Thrown if the caffeinate executable cannot be found.
@@ -46,4 +40,10 @@ public enum CaffeinationError: Swift.Error {
     
     /// Thrown if an attempt is made to start a Caffeination on an already-active instance.
     case alreadyActive
+}
+
+/// An error related to signal trapping.
+internal enum SignalError: Error {
+    /// Indicates that an attempt was made to add a trap for a signal that is already being trapped.
+    case duplicateSignalAdded
 }
