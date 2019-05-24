@@ -57,6 +57,7 @@
 		E25F636821250263007106FE /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E25F636A21252774007106FE /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E278BFD521260A3F00936B43 /* ProcessAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessAdditions.swift; sourceTree = "<group>"; };
+		E27F9A63229786D100CD60B0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		E2EAA688212B3F40006D6D8E /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		OBJ_12 /* CaffeineKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeineKitTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 				E226F8842132FCF9008D760D /* .jazzy.yaml */,
 				OBJ_6 /* Package.swift */,
 				E218A1412123C80F0015C516 /* README.md */,
+				E27F9A63229786D100CD60B0 /* LICENSE */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,
 				OBJ_14 /* Products */,
