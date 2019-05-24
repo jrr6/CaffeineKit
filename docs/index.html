@@ -48,9 +48,6 @@
               <li class="nav-group-task">
                 <a href="Enums/LogLevel.html">LogLevel</a>
               </li>
-              <li class="nav-group-task">
-                <a href="Enums/SignalError.html">SignalError</a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -67,7 +64,7 @@
 <p><a href="https://github.com/aaplmath/CaffeineKit/releases"><img src="https://img.shields.io/github/release/aaplmath/CaffeineKit.svg" alt="GitHub release"></a>
 <a href="https://raw.githubusercontent.com/aaplmath/CaffeineKit/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="GitHub license"></a>
 <a href="https://aaplmath.github.io/CaffeineKit"><img src="https://aaplmath.github.io/CaffeineKit/badge.svg" alt="Documentation"></a>
-<a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Swift version"></a>
+<a href="https://swift.org"><img src="https://img.shields.io/badge/Swift-5-orange.svg" alt="Swift version"></a>
 <a href="https://travis-ci.org/aaplmath/CaffeineKit"><img src="https://travis-ci.org/aaplmath/CaffeineKit.svg?branch=master" alt="Build status"></a></p>
 
 <hr>
@@ -80,7 +77,7 @@
 <li><p><strong>Safety</strong>: CaffeineKit ensures that <q>zombie</q> <code>caffeinate</code> processes don&rsquo;t linger when your app terminates. In fact, even if your app is force-quit (i.e., receives <code>SIGKILL</code>), CaffeineKit can (usually*) prevent <code>caffeinate</code> processes from hanging around.</p>
 
 <p>*If you use the <code>process</code> Caffeination option, CaffeineKit can&rsquo;t prevent <code>caffeinate</code> from persisting if your app is force-quit. But it will still stop zombie processes if you receive any other sort of interrupt!</p></li>
-<li><p><strong>Swiftiness</strong>: <code>try Caffeination(withOpts[.display, .idle, .timed(2)]).start()</code> vs. <code>let proc = Process(); proc.executableURL = URL(fileURLWithPath: &quot;/usr/bin/caffeinate&quot;); proc.arguments = [&quot;-d&quot;, &quot;-i&quot;, &quot;-t&quot;, &quot;2&quot;]; try proc.run()</code>. Need more be said?</p></li>
+<li><p><strong>Swiftiness</strong>: <code>try Caffeination(withOpts: [.display, .idle, .timed(2)]).start()</code> vs. <code>let proc = Process(); proc.executableURL = URL(fileURLWithPath: &quot;/usr/bin/caffeinate&quot;); proc.arguments = [&quot;-d&quot;, &quot;-i&quot;, &quot;-t&quot;, &quot;2&quot;]; try proc.run()</code>. Need more be said?</p></li>
 <li><p><strong>Flexibility</strong>: CaffeineKit is versatile. For instance (no pun intended), instances of <code><a href="Classes/Caffeination.html">Caffeination</a></code> can be reused. (Ever tried re-running a <code>Process</code>?) Multiple <code><a href="Classes/Caffeination.html">Caffeination</a></code> sessions can even occur concurrently. Caffeination exposes an incredibly simple and intuitive architecture, but one that is powerful and customizable if you want it to be.</p></li>
 <li><p><strong>Closures made simple</strong>: CaffeineKit exposes a robust, generics-based closure model that makes it trivial to create closures that prevent screen, disk, or idle sleep. These are especially useful for tasks that require that the computer stay awake, but which macOS might not recognize as having this requirement.</p></li>
 </ul>
@@ -107,7 +104,7 @@
 </code></pre>
 
 <p>Creating a closure that prevents sleep:</p>
-<pre class="highlight swift"><code><span class="n">myObject</span><span class="o">.</span><span class="nv">closureProperty</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Caffeination</span><span class="o">.</span><span class="n">closure</span> <span class="p">{</span> <span class="p">(</span><span class="n">myInt</span><span class="p">,</span> <span class="n">myStr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="k">in</span>
+<pre class="highlight swift"><code><span class="n">myObject</span><span class="o">.</span><span class="n">closureProperty</span> <span class="o">=</span> <span class="k">try</span> <span class="n">caf</span><span class="o">.</span><span class="n">closure</span> <span class="p">{</span> <span class="p">(</span><span class="n">myInt</span><span class="p">,</span> <span class="n">myStr</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span> <span class="k">in</span>
     <span class="c1">// Actions that require the computer to be awake</span>
     <span class="k">return</span> <span class="mi">1</span>
 <span class="p">}</span>
@@ -116,8 +113,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>Copyright &copy; 2018 aaplmath. CaffeineKit is made available under the <a class="link" href="https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Copyright &copy; 2019 aaplmath. CaffeineKit is made available under the <a class="link" href="https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

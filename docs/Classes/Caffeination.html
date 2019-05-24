@@ -49,9 +49,6 @@
               <li class="nav-group-task">
                 <a href="../Enums/LogLevel.html">LogLevel</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Enums/SignalError.html">SignalError</a>
-              </li>
             </ul>
           </li>
         </ul>
@@ -98,7 +95,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L15-L41">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L15-L171">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -128,7 +125,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L44">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L174">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -158,7 +155,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L47-L51">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L177-L181">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -166,9 +163,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CaffeineKit12CaffeinationC13safetyEnabledSbvp"></a>
-                    <a name="//apple_ref/swift/Property/safetyEnabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC13safetyEnabledSbvp">safetyEnabled</a>
+                    <a name="/s:11CaffeineKit12CaffeinationC05limitC8LifetimeSbvp"></a>
+                    <a name="//apple_ref/swift/Property/limitCaffeinationLifetime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC05limitC8LifetimeSbvp">limitCaffeinationLifetime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -176,19 +173,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If <code>true</code>, will automatically set the <code>caffeinate</code> process to terminate with this application&rsquo;s termination. Has no bearing on traps.</p>
+                        <p>If <code>true</code>, will automatically set the <code>caffeinate</code> process to terminate with this application&rsquo;s termination (when the <code>.process</code> option is not passed). Has no bearing on traps.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">safetyEnabled</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">limitCaffeinationLifetime</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L60">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L187">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -218,7 +215,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L63">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L190">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -248,7 +245,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L66-L72">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L193-L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -278,7 +275,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L75-L82">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L202-L209">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -296,7 +293,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Whether the Caffeination will be automatically terminated when the app is quit using the <q>Quit</q> menu or other Apple Event-based means.</p>
+                        <p>Whether the Caffeination will be automatically terminated when the app is quit using the <q>Quit</q> menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused</p>
 
                       </div>
                       <div class="declaration">
@@ -308,7 +305,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L85-L99">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L212-L224">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -333,7 +330,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">withOpts</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">idle</span><span class="p">,</span> <span class="o">.</span><span class="n">display</span><span class="p">],</span> <span class="nv">safety</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">terminationHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">Caffeination</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">withOpts</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">]</span> <span class="o">=</span> <span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="o">.</span><span class="n">defaults</span><span class="p">,</span> <span class="nv">safety</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">terminationHandler</span><span class="p">:</span> <span class="p">((</span><span class="kt">Caffeination</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -381,7 +378,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L108-L120">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L233-L245">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -451,7 +448,7 @@
                         <p>A closure that will create an active Caffeination for the duration of its synchronous execution.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L129-L137">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L256-L264">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -459,9 +456,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CaffeineKit12CaffeinationC7closure8withOpts_q_xcSayAC3OptOG_q_xctKr0_lFZ"></a>
-                    <a name="//apple_ref/swift/Method/closure(withOpts:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC7closure8withOpts_q_xcSayAC3OptOG_q_xctKr0_lFZ">closure(withOpts:_:)</a>
+                    <a name="/s:11CaffeineKit12CaffeinationC13silentClosureyq_xcq_xcr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/silentClosure(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC13silentClosureyq_xcq_xcr0_lF">silentClosure(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -469,19 +466,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Generates a Caffienated closure not associated with any Caffeination instance. Only the <code>.disk</code>, <code>.display</code>, <code>.idle</code>, and <code>.user</code> options will be honored.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO18caffeinateNotFoundyA2CmF">CaffeinationError.caffeinateNotFound</a></code> if the <code>caffeinate</code> executable does not exist.
-
-</div>
+                        <p>Generates a Caffienated closure that prioritizes execution of the closure above Caffeination. Thus, a closure will be returned and be allowed to run even if <code>caffeinate</code> cannot be started. Failures to start <code>caffeinate</code> will occur silently; manually use <code><a href="../Classes/Caffeination.html#/s:11CaffeineKit12CaffeinationC16caffeinateExistsSbvpZ">Caffeination.caffeinateExists</a></code> to check that the intended behavior will occur.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">closure</span><span class="o">&lt;</span><span class="kt">Param</span><span class="p">,</span> <span class="kt">Ret</span><span class="o">&gt;</span><span class="p">(</span><span class="n">withOpts</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">idle</span><span class="p">,</span> <span class="o">.</span><span class="n">display</span><span class="p">],</span> <span class="n">_</span> <span class="nv">sourceClosure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">parameter</span><span class="p">:</span> <span class="kt">Param</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Ret</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Param</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Ret</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">silentClosure</span><span class="o">&lt;</span><span class="kt">Param</span><span class="p">,</span> <span class="kt">Ret</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">sourceClosure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">parameter</span><span class="p">:</span> <span class="kt">Param</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Ret</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Param</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Ret</span></code></pre>
 
                         </div>
                       </div>
@@ -489,18 +481,6 @@
                         <h4>Parameters</h4>
                         <table class="graybox">
                           <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>opts</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The options with which to initiate the closure&rsquo;s Caffeination, which may be any of <code>.idle</code>, <code>.display</code>, <code>.disk</code>, and <code>.user</code>. All others will be silently ignored.</p>
-                                </div>
-                              </td>
-                            </tr>
                             <tr>
                               <td>
                                 <code>
@@ -521,72 +501,7 @@
                         <p>A closure that will create an active Caffeination for the duration of its synchronous execution.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L148-L163">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:11CaffeineKit12CaffeinationC13unsafeClosure8withOpts_q_xcSayAC3OptOG_q_xctr0_lFZ"></a>
-                    <a name="//apple_ref/swift/Method/unsafeClosure(withOpts:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC13unsafeClosure8withOpts_q_xcSayAC3OptOG_q_xctr0_lFZ">unsafeClosure(withOpts:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Generates a Caffienated closure not associated with any Caffeination instance. Only the <code>.disk</code>, <code>.display</code>, <code>.idle</code>, and <code>.user</code> options will be honored. Prioritizes the return of a closure and will allow the closure to run even if the <code>caffeinate</code> executable is not found. Manually use <code><a href="../Classes/Caffeination.html#/s:11CaffeineKit12CaffeinationC16caffeinateExistsSbvpZ">Caffeination.caffeinateExists</a></code> to check that the intended behavior will occur.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="n">unsafeClosure</span><span class="o">&lt;</span><span class="kt">Param</span><span class="p">,</span> <span class="kt">Ret</span><span class="o">&gt;</span><span class="p">(</span><span class="n">withOpts</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="n">idle</span><span class="p">,</span> <span class="o">.</span><span class="n">display</span><span class="p">],</span> <span class="n">_</span> <span class="nv">sourceClosure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="n">_</span> <span class="nv">parameter</span><span class="p">:</span> <span class="kt">Param</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Ret</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Param</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Ret</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>opts</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The options with which to initiate the closure&rsquo;s Caffeination, which may be any of <code>.idle</code>, <code>.display</code>, <code>.disk</code>, and <code>.user</code>. All others will be silently ignored.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>sourceClosure</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The closure for the duration of which the Caffeination will be active.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A closure that will create an active Caffeination for the duration of its synchronous execution.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L173-L192">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L273-L280">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -626,7 +541,66 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L199-L214">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L287-L303">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11CaffeineKit12CaffeinationC5start8withOptsySayAC3OptOG_tKF"></a>
+                    <a name="//apple_ref/swift/Method/start(withOpts:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC5start8withOptsySayAC3OptOG_tKF">start(withOpts:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts preventing sleep (i.e., the Caffeination) with the specified options, overriding any that may have previously been set.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO13alreadyActiveyA2CmF">CaffeinationError.alreadyActive</a></code> if a Caffeination is already active, <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO18caffeinateNotFoundyA2CmF">CaffeinationError.caffeinateNotFound</a></code> if the user does not have the caffeinate binary at the expected location, or any error generated by <code>Process.run()</code> on macOS 10.13 or higher.
+
+</div>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    This method could theoretically raise an <code>NSInvalidArgumentException</code> if run under exceptional conditions on macOS &lt; 10.13. While every attempt is made to eliminate potential causes of an <code>NSInvalidArgumentException</code>, it is still possible that such an exception—which cannot be caught in Swift—could be raised.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">start</span><span class="p">(</span><span class="n">withOpts</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">])</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>opts</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The options with which to start the Caffeination (overrides the existing value of <code>self.opts</code>).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L311-L314">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -651,67 +625,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L217-L222">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:11CaffeineKit12CaffeinationC7addTrap3forys5Int32Vd_tKF"></a>
-                    <a name="//apple_ref/swift/Method/addTrap(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC7addTrap3forys5Int32Vd_tKF">addTrap(for:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Adds a trap to intercept signals. Useful for ensuring that the <code>caffeinate</code> process is terminated prior to app termination. Can only be called once per signal, and a trap cannot be removed once it has been created.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <code><a href="../Enums/SignalError.html#/s:11CaffeineKit11SignalErrorO09duplicateC5AddedyA2CmF">SignalError.duplicateSignalAdded</a></code> if an attempt is made to trap a signal that is already being trapped.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addTrap</span><span class="p">(</span><span class="k">for</span> <span class="nv">signals</span><span class="p">:</span> <span class="kt">Int32</span><span class="o">...</span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>signals</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>Any number of system signals to trap (e.g., SIGHUP, SIGINT).</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L230-L234">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L317-L322">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -760,7 +679,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.2.0/Sources/CaffeineKit/Caffeination.swift#L240-L242">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L328-L330">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -770,8 +689,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>Copyright &copy; 2018 aaplmath. CaffeineKit is made available under the <a class="link" href="https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Copyright &copy; 2019 aaplmath. CaffeineKit is made available under the <a class="link" href="https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
