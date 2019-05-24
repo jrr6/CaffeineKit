@@ -264,56 +264,17 @@ public class Caffeination {
     }
     
     /**
-     Generates a Caffienated closure not associated with any Caffeination instance. Only the `.disk`, `.display`, `.idle`, and `.user` options will be honored.
+     Generates a Caffienated closure that prioritizes execution of the closure above Caffeination. Thus, a closure will be returned and be allowed to run even if `caffeinate` cannot be started. Failures to start `caffeinate` will occur silently; manually use `Caffeination.caffeinateExists` to check that the intended behavior will occur.
      - Parameters:
-        - opts: The options with which to initiate the closure's Caffeination, which may be any of `.idle`, `.display`, `.disk`, and `.user`. All others will be silently ignored.
-        - sourceClosure: The closure for the duration of which the Caffeination will be active.
-        - parameter: A parameter of any type.
-     - Returns: A closure that will create an active Caffeination for the duration of its synchronous execution.
-     - Throws: `CaffeinationError.caffeinateNotFound` if the `caffeinate` executable does not exist.
-     */
-    public static func closure<Param, Ret>(withOpts opts: [Opt] = Opt.defaults, _ sourceClosure: @escaping (_ parameter: Param) -> Ret) throws -> (Param) -> Ret {
-        guard caffeinateExists else {
-            throw CaffeinationError.caffeinateNotFound
-        }
-        let proc = Process.caffeinate(opts: opts, allowingFinite: false, safetyCheck: true)
-        if #available(macOS 10.13, *) {
-            try proc.run()
-        } else {
-            proc.launch()
-        }
-        return { (param: Param) -> Ret in
-            let ret = sourceClosure(param)
-            proc.terminate()
-            return ret
-        }
-    }
-    
-    /**
-     Generates a Caffienated closure not associated with any Caffeination instance. Only the `.disk`, `.display`, `.idle`, and `.user` options will be honored. Prioritizes the return of a closure and will allow the closure to run even if the `caffeinate` executable is not found. Manually use `Caffeination.caffeinateExists` to check that the intended behavior will occur.
-     - Parameters:
-        - opts: The options with which to initiate the closure's Caffeination, which may be any of `.idle`, `.display`, `.disk`, and `.user`. All others will be silently ignored.
         - sourceClosure: The closure for the duration of which the Caffeination will be active.
         - parameter: A parameter of any type.
      - Returns: A closure that will create an active Caffeination for the duration of its synchronous execution.
     */
-    public static func unsafeClosure<Param, Ret>(withOpts opts: [Opt] = Opt.defaults, _ sourceClosure: @escaping (_ parameter: Param) -> Ret) -> (Param) -> Ret {
-        var proc: Process?
-        if caffeinateExists {
-            proc = Process.caffeinate(opts: opts, allowingFinite: false, safetyCheck: true)
-            if #available(macOS 10.13, *) {
-                do {
-                    try proc!.run()
-                } catch {
-                    Logger.log(.warning, "Unsafe closure process failed to launch—failing silently…")
-                }
-            } else {
-                proc!.launch()
-            }
-        }
+    public func silentClosure<Param, Ret>(_ sourceClosure: @escaping (_ parameter: Param) -> Ret) -> (Param) -> Ret {
         return { (param: Param) -> Ret in
+            try? self.start()
             let ret = sourceClosure(param)
-            proc?.terminate()
+            self.stop()
             return ret
         }
     }
