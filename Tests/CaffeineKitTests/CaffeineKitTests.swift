@@ -238,4 +238,21 @@ final class CaffeineKitTests: XCTestCase {
         let nilOpt = Caffeination.Opt.from([String(rand), "-t"])
         XCTAssert(nilOpt == nil)
     }
+    
+    func testDuplicateOptsThrows() {
+        let caf = Caffeination(withOpts: [.timed(2), .disk, .timed(4)])
+        do {
+            try caf.start()
+            XCTFail("Duplicate opts, so error should have been thrown")
+        } catch let e as CaffeinationError {
+            switch e {
+            case .duplicateOpts:
+                break
+            default:
+                XCTFail("Wrong error thrown for duplicate opts")
+            }
+        } catch {
+            XCTFail("Non-CaffeinationError thrown for duplicate opts")
+        }
+    }
 }

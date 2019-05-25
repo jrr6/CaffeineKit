@@ -11,7 +11,10 @@ import Cocoa
 /// An instance of a sleep-prevention session.
 public class Caffeination {
     
-    /// An customization option for a `Caffeination`.
+    /**
+     A customization option for a `Caffeination`.
+     - Note: Any given `Caffeination` can be passed only **one** of each `Opt`. So, for instance, it is valid to pass a `.timed` and `.process` Opt; however, it is not possible to have two different `.process` Opts.
+     */
     public enum Opt {
         /// Prevents disk idle sleep.
         case disk
@@ -230,8 +233,7 @@ public class Caffeination {
         - safety: Whether to enable safety measures to ensure that no "zombie" `caffeinate` processes can outlive the current application. Set to `true` by default, which is recommended.
         - terminationHandler: A handler that will be called when the Caffeination stops. Will be set to `nil` if the parameter is not specified.
      */
-   public init(withOpts opts: [Opt] = Opt.defaults, safety: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
-        // TODO: duplicate opt entries need to be disallowed because they result in unexpected behavior
+    public init(withOpts opts: [Opt] = Opt.defaults, safety: Bool = true, terminationHandler: ((Caffeination) -> Void)? = nil) {
         self.opts = opts
         if safety {
             self.interceptAppTermination = true
@@ -329,13 +331,19 @@ public class Caffeination {
         Logger.logLevel = level
     }
     
-    /// Ensures that the Caffeinate executable exists and that no Caffeination is already active.
+    /// Ensures that the Caffeinate executable exists, no Caffeination is already active, and no duplicate Opts have been passed to this Caffeination.
     private func preCaffeinateSafetyCheck() throws {
         guard isActive == false else {
             throw CaffeinationError.alreadyActive
         }
         guard Caffeination.caffeinateExists else {
             throw CaffeinationError.caffeinateNotFound
+        }
+        let optsSorted = opts.sorted(by: { $0.argumentList[0] > $1.argumentList[0] })
+        for i in 1..<optsSorted.count {
+            if optsSorted[i - 1].argumentList[0] == optsSorted[i].argumentList[0] {
+                throw CaffeinationError.duplicateOpts
+            }
         }
     }
     

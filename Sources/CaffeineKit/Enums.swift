@@ -40,6 +40,9 @@ public enum CaffeinationError: Swift.Error {
     
     /// Thrown if an attempt is made to start a Caffeination on an already-active instance.
     case alreadyActive
+    
+    /// Thrown if duplicate options are passed to a Caffeination
+    case duplicateOpts
 }
 
 /// An error related to signal trapping.
