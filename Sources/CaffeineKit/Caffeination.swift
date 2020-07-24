@@ -299,7 +299,7 @@ public class Caffeination {
                 throw err
             }
         } else {
-            // TODO: Obj-C catching
+            // Note: may throw un-catchable ObjC errors
             proc?.launch()
         }
     }
