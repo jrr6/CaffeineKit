@@ -187,7 +187,7 @@ public class Caffeination {
     private var proc: Process?
     
     /// If `true`, will automatically set the `caffeinate` process to terminate with this application's termination (when the `.process` option is not passed). Has no bearing on traps.
-    public var limitCaffeinationLifetime = true
+    public var limitLifetime = true
     
     /// The function to be executed once the Caffeination terminates.
     public var terminationHandler: ((Caffeination) -> Void)?
@@ -238,7 +238,7 @@ public class Caffeination {
         if safety {
             self.interceptAppTermination = true
         } else {
-            limitCaffeinationLifetime = false
+            limitLifetime = false
             self.interceptAppTermination = false
         }
         if let terminationHandler = terminationHandler {
@@ -288,7 +288,7 @@ public class Caffeination {
     */
     public func start() throws {
         try preCaffeinateSafetyCheck()
-        proc = Process.caffeinate(opts: opts, allowingFinite: true, safetyCheck: limitCaffeinationLifetime)
+        proc = Process.caffeinate(opts: opts, allowingFinite: true, safetyCheck: limitLifetime)
         proc?.terminationHandler = procDidTerminate
         
         if #available(macOS 10.13, *) {
