@@ -8,15 +8,23 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/Caffeination" class="dashAnchor"></a>
     <a title="Caffeination Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">CaffeineKit Docs</a> (100% documented)</p>
+        <p><a href="../index.html">CaffeineKit 0.3.2 Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/aaplmath/CaffeineKit"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://https%3A%2F%2Faaplmath%2Egithub%2Eio%2FCaffeineKit%2Fdocsets%2FCaffeineKit%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Faaplmath.github.io%2FCaffeineKit%2Fdocsets%2FCaffeineKit.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -59,12 +67,16 @@
             <h1>Caffeination</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Caffeination</span></code></pre>
 
                 </div>
               </div>
             <p>An instance of a sleep-prevention session.</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L12-L355">Show on GitHub</a>
+              </div>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -82,7 +94,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An customization option for a <code><a href="../Classes/Caffeination.html">Caffeination</a></code>.</p>
+                        <p>A customization option for a <code><a href="../Classes/Caffeination.html">Caffeination</a></code>.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    Any given <code><a href="../Classes/Caffeination.html">Caffeination</a></code> can be passed only <strong>one</strong> of each <code>Opt</code>. So, for instance, it is valid to pass a <code>.timed</code> and <code>.process</code> Opt; however, it is not possible to have two different <code>.process</code> Opts.
+
+</div>
 
                         <a href="../Classes/Caffeination/Opt.html" class="slightly-smaller">See more</a>
                       </div>
@@ -95,7 +112,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L15-L171">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L18-L174">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -125,7 +142,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L174">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L177">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -155,7 +172,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L177-L181">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L180-L184">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -163,9 +180,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11CaffeineKit12CaffeinationC05limitC8LifetimeSbvp"></a>
-                    <a name="//apple_ref/swift/Property/limitCaffeinationLifetime" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC05limitC8LifetimeSbvp">limitCaffeinationLifetime</a>
+                    <a name="/s:11CaffeineKit12CaffeinationC13limitLifetimeSbvp"></a>
+                    <a name="//apple_ref/swift/Property/limitLifetime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC13limitLifetimeSbvp">limitLifetime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -180,12 +197,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">limitCaffeinationLifetime</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">limitLifetime</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L187">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L190">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -215,7 +232,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L190">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L193">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -240,12 +257,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt">Caffeination</span><span class="o">.</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">opts</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/Caffeination/Opt.html">Opt</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L193-L199">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L196-L202">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -275,7 +292,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L202-L209">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L205-L212">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -293,7 +310,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Whether the Caffeination will be automatically terminated when the app is quit using the <q>Quit</q> menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused</p>
+                        <p>Whether the Caffeination will be automatically terminated when the app is quit using the &ldquo;Quit&rdquo; menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused</p>
 
                       </div>
                       <div class="declaration">
@@ -305,7 +322,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L212-L224">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L215-L227">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -315,7 +332,7 @@
                     <code>
                     <a name="/s:11CaffeineKit12CaffeinationC8withOpts6safety18terminationHandlerACSayAC3OptOG_SbyACcSgtcfc"></a>
                     <a name="//apple_ref/swift/Method/init(withOpts:safety:terminationHandler:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC8withOpts6safety18terminationHandlerACSayAC3OptOG_SbyACcSgtcfc">init(withOpts:safety:terminationHandler:)</a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC8withOpts6safety18terminationHandlerACSayAC3OptOG_SbyACcSgtcfc">init(withOpts:<wbr>safety:<wbr>terminationHandler:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -358,7 +375,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>Whether to enable safety measures to ensure that no <q>zombie</q> <code>caffeinate</code> processes can outlive the current application. Set to <code>true</code> by default, which is recommended.</p>
+                                  <p>Whether to enable safety measures to ensure that no &ldquo;zombie&rdquo; <code>caffeinate</code> processes can outlive the current application. Set to <code>true</code> by default, which is recommended.</p>
                                 </div>
                               </td>
                             </tr>
@@ -378,7 +395,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L233-L245">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L236-L247">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -388,7 +405,7 @@
                     <code>
                     <a name="/s:11CaffeineKit12CaffeinationC7closureyq_xcq_xcKr0_lF"></a>
                     <a name="//apple_ref/swift/Method/closure(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC7closureyq_xcq_xcKr0_lF">closure(_:)</a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC7closureyq_xcq_xcKr0_lF">closure(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -448,7 +465,7 @@
                         <p>A closure that will create an active Caffeination for the duration of its synchronous execution.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L256-L264">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L258-L266">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -458,7 +475,7 @@
                     <code>
                     <a name="/s:11CaffeineKit12CaffeinationC13silentClosureyq_xcq_xcr0_lF"></a>
                     <a name="//apple_ref/swift/Method/silentClosure(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC13silentClosureyq_xcq_xcr0_lF">silentClosure(_:)</a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC13silentClosureyq_xcq_xcr0_lF">silentClosure(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -501,7 +518,7 @@
                         <p>A closure that will create an active Caffeination for the duration of its synchronous execution.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L273-L280">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L275-L282">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -524,8 +541,7 @@
     <p class="aside-title">Throws</p>
     <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO13alreadyActiveyA2CmF">CaffeinationError.alreadyActive</a></code> if a Caffeination is already active, <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO18caffeinateNotFoundyA2CmF">CaffeinationError.caffeinateNotFound</a></code> if the user does not have the caffeinate binary at the expected location, or any error generated by <code>Process.run()</code> on macOS 10.13 or higher.
 
-</div>
-<div class="aside aside-warning">
+</div><div class="aside aside-warning">
     <p class="aside-title">Warning</p>
     This method could theoretically raise an <code>NSInvalidArgumentException</code> if run under exceptional conditions on macOS &lt; 10.13. While every attempt is made to eliminate potential causes of an <code>NSInvalidArgumentException</code>, it is still possible that such an exception—which cannot be caught in Swift—could be raised.
 
@@ -541,7 +557,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L287-L303">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L289-L305">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -551,7 +567,7 @@
                     <code>
                     <a name="/s:11CaffeineKit12CaffeinationC5start8withOptsySayAC3OptOG_tKF"></a>
                     <a name="//apple_ref/swift/Method/start(withOpts:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC5start8withOptsySayAC3OptOG_tKF">start(withOpts:)</a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC5start8withOptsySayAC3OptOG_tKF">start(withOpts:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -564,8 +580,7 @@
     <p class="aside-title">Throws</p>
     <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO13alreadyActiveyA2CmF">CaffeinationError.alreadyActive</a></code> if a Caffeination is already active, <code><a href="../Enums/CaffeinationError.html#/s:11CaffeineKit17CaffeinationErrorO18caffeinateNotFoundyA2CmF">CaffeinationError.caffeinateNotFound</a></code> if the user does not have the caffeinate binary at the expected location, or any error generated by <code>Process.run()</code> on macOS 10.13 or higher.
 
-</div>
-<div class="aside aside-warning">
+</div><div class="aside aside-warning">
     <p class="aside-title">Warning</p>
     This method could theoretically raise an <code>NSInvalidArgumentException</code> if run under exceptional conditions on macOS &lt; 10.13. While every attempt is made to eliminate potential causes of an <code>NSInvalidArgumentException</code>, it is still possible that such an exception—which cannot be caught in Swift—could be raised.
 
@@ -600,7 +615,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L311-L314">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L313-L316">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -630,7 +645,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L317-L322">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L319-L324">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -640,7 +655,7 @@
                     <code>
                     <a name="/s:11CaffeineKit12CaffeinationC11setLogLevelyyAA0eF0OFZ"></a>
                     <a name="//apple_ref/swift/Method/setLogLevel(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC11setLogLevelyyAA0eF0OFZ">setLogLevel(_:)</a>
+                    <a class="token" href="#/s:11CaffeineKit12CaffeinationC11setLogLevelyyAA0eF0OFZ">setLogLevel(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -679,7 +694,7 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.0/Sources/CaffeineKit/Caffeination.swift#L328-L330">Show on GitHub</a>
+                        <a href="https://github.com/aaplmath/CaffeineKit/tree/v0.3.2/Sources/CaffeineKit/Caffeination.swift#L330-L332">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -689,8 +704,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>Copyright &copy; 2019 aaplmath. CaffeineKit is made available under the <a class="link" href="https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>Copyright &copy; 2020 aaplmath. CaffeineKit is made available under the <a class="link" href="https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE" target="_blank" rel="external">MIT License</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
