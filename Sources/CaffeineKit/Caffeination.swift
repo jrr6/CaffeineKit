@@ -211,7 +211,7 @@ public class Caffeination {
         }
     }
     
-    /// Whether the Caffeination will be automatically terminated when the app is quit using the "Quit" menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused
+    /// Whether the Caffeination will be automatically terminated when the app is quit using the "Quit" menu or receives a termination signal. Setting this property will enable or disable this safety mechanism. Not to be confused with `limitLifetime`.
     public var interceptAppTermination: Bool {
         willSet(val) {
             // If this is changed while the Caffeination is in progress, its registration needs to be changed immediately. Otherwise, we can wait for this to take effect the next time the Caffeination starts.
@@ -339,7 +339,7 @@ public class Caffeination {
         guard Caffeination.caffeinateExists else {
             throw CaffeinationError.caffeinateNotFound
         }
-        let optsSorted = opts.sorted(by: { $0.argumentList[0] > $1.argumentList[0] })
+        let optsSorted = opts.sorted { $0.argumentList[0] > $1.argumentList[0] }
         for i in 1..<optsSorted.count {
             if optsSorted[i - 1].argumentList[0] == optsSorted[i].argumentList[0] {
                 throw CaffeinationError.duplicateOpts
