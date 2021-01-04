@@ -339,10 +339,12 @@ public class Caffeination {
         guard Caffeination.caffeinateExists else {
             throw CaffeinationError.caffeinateNotFound
         }
-        let optsSorted = opts.sorted { $0.argumentList[0] > $1.argumentList[0] }
-        for i in 1..<optsSorted.count {
-            if optsSorted[i - 1].argumentList[0] == optsSorted[i].argumentList[0] {
-                throw CaffeinationError.duplicateOpts
+        if opts.count > 0 {
+            let optsSorted = opts.sorted { $0.argumentList[0] > $1.argumentList[0] }
+            for i in 1..<optsSorted.count {
+                if optsSorted[i - 1].argumentList[0] == optsSorted[i].argumentList[0] {
+                    throw CaffeinationError.duplicateOpts
+                }
             }
         }
     }
