@@ -1,14 +1,14 @@
-<img src="https://github.com/aaplmath/CaffeineKit/raw/master/logo.png" height="150" align="left">
+<img src="https://github.com/jrr6/CaffeineKit/raw/master/logo.png" height="150" align="left">
 
 # CaffeineKit
 
 A Swift library for keeping Macs awake.
 
-[![GitHub release](https://img.shields.io/github/release/aaplmath/CaffeineKit.svg)](https://github.com/aaplmath/CaffeineKit/releases)
-[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/aaplmath/CaffeineKit/master/LICENSE)
-[![Documentation](https://aaplmath.github.io/CaffeineKit/badge.svg)](https://aaplmath.github.io/CaffeineKit)
+[![GitHub release](https://img.shields.io/github/release/jrr6/CaffeineKit.svg)](https://github.com/jrr6/CaffeineKit/releases)
+[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/jrr6/CaffeineKit/master/LICENSE)
+[![Documentation](https://jrr6.github.io/CaffeineKit/badge.svg)](https://jrr6.github.io/CaffeineKit)
 [![Swift version](https://img.shields.io/badge/Swift-5-orange.svg)](https://swift.org)
-[![Build status](https://travis-ci.org/aaplmath/CaffeineKit.svg?branch=master)](https://travis-ci.org/aaplmath/CaffeineKit)
+[![Build status](https://travis-ci.org/jrr6/CaffeineKit.svg?branch=master)](https://travis-ci.org/jrr6/CaffeineKit)
 
 ---
 

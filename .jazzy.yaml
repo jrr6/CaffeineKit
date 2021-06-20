@@ -1,5 +1,5 @@
 module: CaffeineKit
-author: aaplmath
+author: jrr6
 
 swift_version: 5.2.4
 min_acl: public
@@ -8,12 +8,12 @@ output: docs
 clean: true
 
 docset_icon: logo.png
-author_url: https://aaplmath.github.io
-github_url: https://github.com/aaplmath/CaffeineKit
-root_url: https://aaplmath.github.io/CaffeineKit/
+author_url: https://jrr6.github.io
+github_url: https://github.com/jrr6/CaffeineKit
+root_url: https://jrr6.github.io/CaffeineKit/
 
-copyright: 'Copyright &copy; 2020 aaplmath. CaffeineKit is made available under the [MIT License](https://github.com/aaplmath/CaffeineKit/blob/master/LICENSE).'
+copyright: 'Copyright &copy; 2021 jrr6. CaffeineKit is made available under the [MIT License](https://github.com/jrr6/CaffeineKit/blob/master/LICENSE).'
 theme: apple
 
-github_file_prefix: https://github.com/aaplmath/CaffeineKit/tree/v0.3.2
+github_file_prefix: https://github.com/jrr6/CaffeineKit/tree/v0.3.2
 module_version: 0.3.2
